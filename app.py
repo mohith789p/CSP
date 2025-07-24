@@ -555,23 +555,6 @@ def translate_with_fallback(translator, text, src_lang, dest_lang, max_retries=3
                 st.error(f"Translation failed after {max_retries} attempts.")
                 return text  # Return original text if translation fails
 
-# Main processing
-col1, col2, col3 = st.columns([1, 2, 1])
-
-with col2:
-    if st.session_state.language == 'Telugu':
-        if st.button("💬 సమాధానం పొందండి", type="primary", use_container_width=True):
-            if not user_query.strip():
-                st.warning("⚠️ దయచేసి ప్రశ్నను నమోదు చేయండి")
-            else:
-                process_query_telugu()
-    else:
-        if st.button("💬 Get Answer", type="primary", use_container_width=True):
-            if not user_query.strip():
-                st.warning("⚠️ Please enter a question")
-            else:
-                process_query_english()
-
 def process_query_telugu():
     # Create containers for dynamic updates
     status_container = st.container()
@@ -715,6 +698,7 @@ def process_query_telugu():
             if st.button("🚨 సమస్య నివేదించండి"):
                 st.warning("నిర్దిష్ట న్యాయ సమస్యలకు దయచేసి అర్హత కలిగిన న్యాయవాదిని సంప్రదించండి.")
 
+
 def process_query_english():
     # Create containers for dynamic updates
     status_container = st.container()
@@ -836,6 +820,26 @@ def process_query_english():
         with action_col4:
             if st.button("🚨 Report Issue"):
                 st.warning("Please ensure to consult a qualified lawyer for specific legal issues.")
+
+
+# Main processing
+col1, col2, col3 = st.columns([1, 2, 1])
+
+with col2:
+    if st.session_state.language == 'Telugu':
+        if st.button("💬 సమాధానం పొందండి", type="primary", use_container_width=True):
+            if not user_query.strip():
+                st.warning("⚠️ దయచేసి ప్రశ్నను నమోదు చేయండి")
+            else:
+                process_query_telugu()
+    else:
+        if st.button("💬 Get Answer", type="primary", use_container_width=True):
+            if not user_query.strip():
+                st.warning("⚠️ Please enter a question")
+            else:
+                process_query_english()
+
+
 
 # Legal disclaimer section
 st.markdown("---")
